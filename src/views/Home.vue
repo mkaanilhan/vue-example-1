@@ -6,9 +6,25 @@ import List from '../components/List.vue'
 
 export default {
 
+    beforeRouteEnter(to, from) {
+
+
+        /**
+         * 
+         *   console.log(to)
+        console.log(from)
+        console.log('from page')
+         * 
+         */
+
+
+
+    },
+
     data() {
         return {
-            header: 'To do App',
+
+            header: 'To Do App',
             list: !!JSON.parse(localStorage.getItem('list'))?.length ? JSON.parse(localStorage.getItem('list')) : [],
             inputText: null,
             snackbar: {
@@ -75,7 +91,33 @@ export default {
 
         }
 
-    }
+    },
+
+
+    beforeCreate() {
+
+
+        //  this.header = 'To do app'
+        console.log('PARENT BEFORE CREATE')
+    },
+    created() {
+
+
+
+        //  console.log('PARENT CREATED')
+    },
+    beforeMount() { console.log('PARENT BEFORE MOUNTED') },
+    mounted() {
+
+        //  this.header = 'To do app from created'
+
+
+        console.log('PARENT MOUNTED')
+    },
+    beforeUpdate() { console.log('PARENT BEFORE UPDATE') },
+    updated() { console.log('PARENT UPDATED') },
+    beforeUnmount() { console.log('PARENT BEFORE UNMOUNT') },
+    unmounted() { console.log('PARENT UNMOUNT') }
 
 }
 </script>
@@ -84,7 +126,46 @@ export default {
     <div class='container mx-auto w-640 bg-slate-100 my-4 p-2 rounded-lg'>
 
         <Snackbar v-model:state='snackbar.state' :text='snackbar.text' />
-        <Header :header='header' :numberOfItem='numberOfItem' />
+        <Header :header='header' :numberOfItem='numberOfItem'>
+
+            <template #header='props'>
+
+                <div>
+                    {{ props.id }}
+                </div>
+
+                <ul>
+
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+
+                </ul>
+            </template>
+
+            <template #header2>
+
+                <ul>
+
+                    <li>12</li>
+                    <li>22</li>
+                    <li>32</li>
+
+                </ul>
+            </template>
+
+
+        </Header>
+
+        <Header :header='header' :numberOfItem='numberOfItem'>
+            <template #header2>
+
+                some text
+            </template>
+
+        </Header>
+
+
 
         <Add @addNewItemFromChild='addNewItem' />
 

@@ -14,12 +14,16 @@ export default {
                 <RouterLink to='/' activeClass='bg-slate-100 rounded-lg p-2 font-bold' class='p-2'>Home</RouterLink>
                 <RouterLink to='/about' activeClass='bg-slate-100 rounded-lg p-2 font-bold' class='p-2'>About
                 </RouterLink>
+                <RouterLink to='/contact' activeClass='bg-slate-100 rounded-lg p-2 font-bold' class='p-2'>Contact
+                </RouterLink>
 
             </div>
 
         </nav>
 
         <RouterView />
+
+
 
     </div>
 
